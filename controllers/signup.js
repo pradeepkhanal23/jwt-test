@@ -1,5 +1,4 @@
 const User = require("../models/User");
-
 const { createSecretToken } = require("../utils/generateToken");
 const bcrypt = require("bcrypt");
 
@@ -9,7 +8,9 @@ module.exports = {
     try {
       //checking if we have recieved all the inputs
       if (!(req.body.username && req.body.email && req.body.password)) {
-        res.status(400).send("All input is required");
+        res.status(400).json({
+          message: "All input is required",
+        });
       }
 
       //if all field are there , we check if the user already exists
